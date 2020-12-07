@@ -45,12 +45,13 @@
         exit();
     }
 
-    // Unfinished
+    // Unfinished - feel free to alter if necessary
     if(isset($_POST['Login'])) {
-      $username = mysqli_real_escape_string($db, $_POST['username']);
-      $password = mysqli_real_escape_string($db, $_POST['password']);
+      // collect account data from login form
+      $username = mysqli_real_escape_string($db, trim($_POST['username']));
+      $password = mysqli_real_escape_string($db, trim($_POST['password']));
 
-
+      // double-check field requirements
       if (empty($username)) {
           array_push($errors, "Username is required");
       }
@@ -63,9 +64,11 @@
       }
 
       if (count($errors) == 0) {
+        // find account by username search on users table
         $sql = "SELECT username,password FROM users WHERE username='$username'";
         if ($rs = mysqli_query($db, $sql)) {
           $row = mysqli_fetch_arry($rs);
+          // send to homepage if passwords match
           if($username==$row['username'] && $password==$row['password']) {
             header("location: index.php");
           } else {

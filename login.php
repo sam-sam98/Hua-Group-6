@@ -16,6 +16,7 @@
     <input type="submit" value="Register">
   </form>
   <script type="text/javascript">
+  // Halts submission if fields are empty
   function testEmpty() {
     loginForm = document.LoginForm
     if((loginForm.username.value == "") || (loginForm.password.value == "")) {
