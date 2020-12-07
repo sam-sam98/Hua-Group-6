@@ -45,4 +45,9 @@
         exit();
     }
 
+    // Unfinished
+    if(isset($_POST['Login'])) {
+      $username = mysqli_real_escape_string($db, $_POST['username']);
+      $password = mysqli_real_escape_string($db, $_POST['password']);
+    }
 ?>
