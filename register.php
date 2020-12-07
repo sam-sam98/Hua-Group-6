@@ -2,18 +2,25 @@
 <?php include "errors.php" ?>
 <!DOCTYPE html>
 <html>
+
     <form ACTION="backend.php" METHOD="post" NAME="RegisterForm" ONSUBMIT="return (testEmpty() && testChars() && testPass())">
         <label>Username:</label><br>
-        <INPUT TYPE="text" NAME="username"><br>
+        <INPUT type="text" name="username"><br>
 
         <label>Password:</label><br>
-        <INPUT TYPE="password" NAME="pass1"><br>
+        <INPUT type="password" name="pass1"><br>
 
         <label>Verify Password:</label><br>
-        <INPUT TYPE="password" NAME="pass2"><br>
+        <INPUT type="password" name="pass2"><br>
 
-        <INPUT TYPE="submit" VALUE="Register">
+        <INPUT type="submit" name="register" value="Register">
     </form>
+    <div>
+      <p>Already have an account?<p>
+      <button type="button" value="Login" onclick="location.href='login.php'">Login</button>
+    </div>
+
+
     <script type="text/javascript">
     function testEmpty() {
       registerForm = document.RegisterForm
@@ -22,7 +29,7 @@
         return false;
       } else return true;
     }
-
+      
     function testChars() {
       username = document.RegisterForm.username.value
       re = /[^a-z0-9_\-]/i
