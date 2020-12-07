@@ -4,7 +4,7 @@
     $username = $pass1 = $pass2 = "";
     $errors = array();
 
-    $db = mysqli_connect('localhost', 'root', 'gr4ves1313', 'dbms');
+    $db = mysqli_connect('localhost', 'root', 'gr4ves1313', 'dbms'); // WARNING: Check password before running on your own server
 
     if (isset($_POST['Register'])) {
         $username = mysqli_real_escape_string($db, $_POST['username']);
