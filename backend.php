@@ -49,5 +49,31 @@
     if(isset($_POST['Login'])) {
       $username = mysqli_real_escape_string($db, $_POST['username']);
       $password = mysqli_real_escape_string($db, $_POST['password']);
+
+
+      if (empty($username)) {
+          array_push($errors, "Username is required");
+      }
+
+      if (preg_match('/[^a-z_\-0-9]/i', $username)) {
+          array_push($errors, "Username must contain only letters and numbers");
+      }
+      if (empty($password)) {
+          array_push($errors, "Password is required");
+      }
+
+      if (count($errors) == 0) {
+        $sql = "SELECT username,password FROM users WHERE username='$username'";
+        if ($rs = mysqli_query($db, $sql)) {
+          $row = mysqli_fetch_arry($rs);
+          if($username==$row['username'] && $password==$row['password']) {
+            header("location: index.php");
+          } else {
+            header("loaction: login.php?id=Username or password is incorrect. Please try again.");
+          }
+        } else {
+          die("Cannot find account.");
+        }
+      }
     }
 ?>

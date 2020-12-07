@@ -1,7 +1,8 @@
-<?php include "backend.php"?>
+<?php include "backend.php" ?>
+<?php include "errors.php" ?>
 <!DOCTYPE html>
 <html>
-    <form ACTION="backend.php" METHOD="post" NAME="RegisterForm" ONSUBMIT="return (testEmpty() && testChars())">
+    <form ACTION="backend.php" METHOD="post" NAME="RegisterForm" ONSUBMIT="return (testEmpty() && testChars() && testPass())">
         <label>Username:</label><br>
         <INPUT TYPE="text" NAME="username"><br>
 
@@ -21,8 +22,7 @@
         return false;
       } else return true;
     }
-    </script>
-    <script type="text/javascript">
+
     function testChars() {
       username = document.RegisterForm.username.value
       re = /[^a-z0-9_\-]/i
@@ -30,6 +30,17 @@
         return true;
       } else {
         alert('Username can only contain underscores, hyphens, and alphanumeric characters.');
+        return false;
+      }
+    }
+
+    function testPass() {
+      pass1 = document.RegisterForm.pass1.value
+      pass2 = document.RegisterForm.pass2.value
+      if(pass1 == pass2) {
+          return true;
+      } else {
+        alert('Passwords must match.');
         return false;
       }
     }

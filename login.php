@@ -1,4 +1,5 @@
 <?php include "backend.php" ?>
+<?php include "errors.php" ?>
 <!DOCTYPE html>
 <html>
 <head></head>
