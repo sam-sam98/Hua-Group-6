@@ -8,12 +8,12 @@
     <input type="text" name="username"><br>
     <label for="password">Password:</label>
     <input type="password" name="password"><br>
-    <input type="submit" value="Log In" name="Login"><br>
+    <input type="submit" value="Log In" name="login"><br>
   </form>
-  <form action="register.php">
-    New user?<br>
-    <input type="submit" value="Register">
-  </form>
+  <div>
+    <p>New User?<p>
+    <button type="button" value="Register" onclick="location.href='register.php'">Register</button>
+  </div>
   <script type="text/javascript">
   function testEmpty() {
     loginForm = document.LoginForm
