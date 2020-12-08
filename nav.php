@@ -6,18 +6,19 @@
 
 <body>
   <?php
-    if ($role = "super") {
+
+    if ($role == "super") {
       print('<div class="topnav">
         <a class="active" href="/index.php">Index</a>
         <a href="/approve-events.php">Approve Events</a>
-        <a href="/event-adminlookup">Event Lookup</a>
+        <a href="/event-adminlookup.php">Event Lookup</a>
       </div>');
     }
     else{
       print('<div class="topnav">
         <a class="active" href="/index.php">Index</a>
         <a href="/manage-events.php">Event Management</a>
-        <a href="/event-lookup">Event Lookup</a>
+        <a href="/event-lookup.php">Event Lookup</a>
       </div>');
     }
   ?>
