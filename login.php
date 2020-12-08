@@ -5,7 +5,13 @@
 <html>
 <head></head>
 <body>
-  <form action="backend.php" method="post" name="LoginForm" onsubmit="return testEmpty()">
+  <?php
+  if (isset($_SESSION['loginfail'])) {
+    echo "<h4>" . $_SESSION['loginfail'] . "</h4>";
+    unset($_SESSION['loginfail']);
+  }
+  ?>
+  <form action="login_backend.php" method="post" name="LoginForm" onsubmit="return testEmpty()">
     <label for="username">Username:</label><br>
     <input type="text" name="username"><br>
     <label for="password">Password:</label><br>
