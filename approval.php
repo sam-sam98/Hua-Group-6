@@ -22,6 +22,7 @@
         }
         mysqli_free_result($resultpending);
         echo "<br><input type=\"submit\" value=\"Confirm\">";
+        echo "<input type=\"reset\" value=\"Clear\">";
       } else {
         echo "No pending event forms.";
       }
@@ -29,6 +30,9 @@
       echo "No pending event forms.";
     }
     ?>
+  </form>
+  <form action="index.php" method="post">
+    <input type="submit" value="Back">
   </form>
 </body>
 </html>

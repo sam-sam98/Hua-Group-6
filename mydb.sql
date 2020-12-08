@@ -52,6 +52,7 @@ INSERT INTO `admins` (`idParticipants`) VALUES
 
 CREATE TABLE `events` (
   `idEvents` int(11) NOT NULL,
+  `idOrganizer` int(11) NOT NULL,
   `eventName` varchar(255) NOT NULL,
   `eventAddress` varchar(255) NOT NULL,
   `eventDescription` mediumtext NOT NULL,
