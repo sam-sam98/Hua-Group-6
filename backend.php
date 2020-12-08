@@ -114,7 +114,7 @@ if (isset($_POST['logout'])) {
 }
 
 //getting post request from login page
-if (isset($_POST['login'])) {
+if (isset($_POST['Login'])) {
     echo ("<script>console.log(\"Login page request successful\");</script>");
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = md5(mysqli_real_escape_string($db, $_POST['password']));
