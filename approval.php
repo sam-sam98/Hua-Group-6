@@ -5,22 +5,22 @@
 <body>
   <form action="approval_backend.php" method="post" name="ApprovalForm">
     <?php
-    $getpending = "SELECT * FROM events WHERE approved = 0";
-    if ($resultpending = mysqli_query($db, $getpending)) {
-      $n = mysqli_num_rows($resultpending);
+    $sql = "SELECT * FROM events WHERE approved = 0";
+    if ($result = mysqli_query($db, $sql)) {
+      $n = mysqli_num_rows($result);
       if ($n > 0) {
         for ($i = 0; $i < $n; $i++) {
-          $row = mysqli_fetch_array($resultpending, MYSQLI_ASSOC);
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
           echo "<h2>" . $row['eventName'] . "</h2>";
           echo "Location: " . $row['eventAddress'] . "<br>";
           echo "Dates: " . $row['eventStart'] . " to " . $row['eventEnd'] . "<br>";
           echo "Description: " . $row['eventDescription'] . "<br>";
-          echo "<input type=\"radio\" name=\"verdict$i\" value=\"approve\">";
+          echo "<input type=\"radio\" name=\"verdict$i\" value=\"approve\">";          
           echo "<label for=\"approve\">Approve</label>  ";
           echo "<input type=\"radio\" name=\"verdict$i\" value=\"reject\">";
           echo "<label for=\"reject\">Reject</label><br>";
         }
-        mysqli_free_result($resultpending);
+        mysqli_free_result($result);
         echo "<br><input type=\"submit\" value=\"Confirm\">";
         echo "<input type=\"reset\" value=\"Clear\">";
       } else {

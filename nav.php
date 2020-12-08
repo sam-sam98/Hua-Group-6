@@ -6,10 +6,10 @@
 
 <body>
   <?php
-    if ($role = "super") {
+    if ($_SESSION['role'] == "super") {
       print('<div class="topnav">
         <a class="active" href="/index.php">Index</a>
-        <a href="/approve-events.php">Approve Events</a>
+        <a href="approval.php">Approve Events</a>
         <a href="/event-adminlookup">Event Lookup</a>
       </div>');
     }

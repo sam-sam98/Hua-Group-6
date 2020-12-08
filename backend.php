@@ -98,8 +98,12 @@ if (isset($_POST['register'])) {
     if (count($errors) == 0) {
         $password = md5($pass1);
         $sql = "INSERT INTO participants (username, password) VALUES ('$username', '$password')";
-        mysqli_query($db, $sql);
-        header('location: login.php');
+        if(mysqli_query($db, $sql)) {
+          header('location: login.php');
+        } else {
+          $_SESSION['regfail'] = "Username is already taken.";
+          header('location: register.php');
+        }
     } else {
         echo ("<script>console.log(\"ERROR: Registration page errors: '$errors'\");</script>");
     }
