@@ -6,9 +6,9 @@
 <head></head>
 <body>
   <form action="backend.php" method="post" name="LoginForm" onsubmit="return testEmpty()">
-    <label for="username">Username:</label>
+    <label for="username">Username:</label><br>
     <input type="text" name="username"><br>
-    <label for="password">Password:</label>
+    <label for="password">Password:</label><br>
     <input type="password" name="password"><br>
     <input type="submit" value="Log In" name="Login"><br>
   </form>

@@ -120,14 +120,14 @@ if (isset($_POST['login'])) {
     $password = md5(mysqli_real_escape_string($db, $_POST['password']));
 
     $superadminlogin = "SELECT username FROM superadmin WHERE username = '$username' and password = '$password'";
-    
+
     $loginsql = "SELECT idParticipants FROM participants WHERE username = '$username' and password = '$password'";
 
     $resultsa = mysqli_query($db, $superadminlogin);
     $resulta = mysqli_query($db, $loginsql);
     $resultuser = mysqli_query($db, $loginsql);
     $adminflag = false;
-    if(mysqli_num_rows($resulta) == 1){ 
+    if(mysqli_num_rows($resulta) == 1){
         $row = mysqli_fetch_array($resulta, MYSQLI_ASSOC);
         $iduser = $row['idParticipants'];
         $adminlogin = "SELECT idParticipants FROM admins WHERE idParticipants = '$iduser'";
@@ -158,3 +158,4 @@ if (isset($_POST['login'])) {
         //header("location: login.php");
     }
 }
+?>

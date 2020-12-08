@@ -56,7 +56,8 @@ CREATE TABLE `events` (
   `eventAddress` varchar(255) NOT NULL,
   `eventDescription` mediumtext NOT NULL,
   `eventStart` date NOT NULL,
-  `eventEnd` date NOT NULL
+  `eventEnd` date NOT NULL,
+  `approved` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
