@@ -26,7 +26,7 @@ if (mysqli_num_rows($resultsuper) == 1) {
   $_SESSION['userid'] = $iduser;
   $_SESSION['username'] = $username;
   $_SESSION['role'] = "participant";
-  
+
   $adminlogin = "SELECT idParticipants FROM admins WHERE idParticipants = '$iduser'";
   $result = mysqli_query($db, $adminlogin);
   if(mysqli_num_rows($result) == 1 ){
@@ -35,8 +35,7 @@ if (mysqli_num_rows($resultsuper) == 1) {
     $_SESSION['role'] = "participant";
   }
   header("location: index.php");
-}
-  else {
+}  else {
     $_SESSION['loginfail'] = "Username and password did not match. Please try again.";
     header("location: login.php");
 }

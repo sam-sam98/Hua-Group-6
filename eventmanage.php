@@ -7,7 +7,7 @@
   <br>
   <?php
   if ($_SESSION['role'] == "participant") {
-    echo "Create and event to get started!";
+    echo "Create an event to get started!";
   }
   ?>
   <form action="create.php" method="post">
