@@ -1,4 +1,5 @@
 <?php include "backend.php" ?>
+<?php include "nav.php" ?>
 <!DOCTYPE html>
 <html>
 <head></head>
@@ -11,11 +12,11 @@
       if ($n > 0) {
         for ($i = 0; $i < $n; $i++) {
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-          echo "<h2>" . $row['eventName'] . "</h2>";
-          echo "Location: " . $row['eventAddress'] . "<br>";
+          echo "<h4>" . $row['eventName'] . "</h4>";
+          echo "Location: " . $row['eventCity'] . ", " . $row['eventState'] . "<br>";
           echo "Dates: " . $row['eventStart'] . " to " . $row['eventEnd'] . "<br>";
           echo "Description: " . $row['eventDescription'] . "<br>";
-          echo "<input type=\"radio\" name=\"verdict$i\" value=\"approve\">";          
+          echo "<input type=\"radio\" name=\"verdict$i\" value=\"approve\">";
           echo "<label for=\"approve\">Approve</label>  ";
           echo "<input type=\"radio\" name=\"verdict$i\" value=\"reject\">";
           echo "<label for=\"reject\">Reject</label><br>";

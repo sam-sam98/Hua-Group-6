@@ -16,7 +16,7 @@
     else{
       print('<div class="topnav">
         <a class="active" href="/index.php">Index</a>
-        <a href="/manage-events.php">Event Management</a>
+        <a href="/dbmsprj/eventmanage.php">Event Management</a>
         <a href="/event-lookup">Event Lookup</a>
       </div>');
     }
