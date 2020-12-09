@@ -10,6 +10,11 @@
     echo "<h4>" . $_SESSION['loginfail'] . "</h4>";
     unset($_SESSION['loginfail']);
   }
+  if (isset($_SESSION['attemptcounter'])) {
+    if ($_SESSION['attemptcounter'] >= 5) {
+      echo "<h4>Too many failed attempts. Please try again later.</h4>";
+    }
+  }
   ?>
   <form action="login_backend.php" method="post" name="LoginForm" onsubmit="return testEmpty()">
     <label for="username">Username:</label><br>
