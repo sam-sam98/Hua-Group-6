@@ -10,7 +10,7 @@
       print('<div class="topnav">
         <a class="active" href="/index.php">Index</a>
         <a href="approval.php">Approve Events</a>
-        <a href="superadmin-lookup">Event Lookup</a>
+        <a href="superadmin-lookup.php">Event Lookup</a>
       </div>');
     }
     else{
