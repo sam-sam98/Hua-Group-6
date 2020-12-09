@@ -10,7 +10,7 @@
 
     if(isset($_POST['participantsearch'])){
         $participant = mysqli_real_escape_string($db, $_POST['participantlookup']);
-        $participantsql = "SELECT Events.eventName FROM PARTICIPANTS, EVENTSPARTICIPATED, EVENTS WHERE PARTICIPANTS.USERNAME = '$participant', EVENTSPARTICIPATED.idParticipants = PARTICIPANTS.idParticipants AND EVENTS.idEvents = EVENTSPARTICIPATED.idEvents";
+        $participantsql = "SELECT events.eventName FROM participants, eventsparticipated, events WHERE (participants.username = '$participant' AND eventsparticipated.idParticipants = participants.idParticipants AND events.idEvents = eventsparticipated.idEvents)";
         $participantresult = mysqli_query($db, $participantsql) or trigger_error(mysqli_error($db));
      
         if(mysqli_num_rows( $participantresult) > 0){
@@ -30,8 +30,8 @@
     }
     else if(isset($_POST['adminsearch'])){
         $adminsearch = mysqli_real_escape_string($db, $_POST['adminlookup']);
-        $adminsql = "SELECT participants.idParticipants, participants.username FROM participants, admins, events WHERE participants.username = '$adminsearch' AND admins.idParticipants = participants.idParticipants AND admins.idParticipants = events.idOrganizer";
-        $adminresult = mysqli_query($db, $locsql) or trigger_error(mysqli_error($db));   
+        $adminsql = "SELECT events.eventName, events.eventDescription, events.eventCity, events.eventState, events.eventStart, events.eventEnd, events.eventURL FROM participants, admins, events WHERE participants.username = '$adminsearch' AND admins.idParticipants = participants.idParticipants AND admins.idParticipants = events.idOrganizer";
+        $adminresult = mysqli_query($db, $adminsql) or trigger_error(mysqli_error($db));   
         if(mysqli_num_rows($adminresult) > 0){
             echo "<h2>Events organized by $adminsearch</h2>";
             for ($i = 0; $i < mysqli_num_rows($adminresult); $i++) {
