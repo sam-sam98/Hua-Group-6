@@ -98,8 +98,12 @@ if (isset($_POST['register'])) {
     if (count($errors) == 0) {
         $password = md5($pass1);
         $sql = "INSERT INTO participants (username, password) VALUES ('$username', '$password')";
-        mysqli_query($db, $sql);
-        header('location: login.php');
+        if(mysqli_query($db, $sql)) {
+          header('location: login.php');
+        } else {
+          $_SESSION['regfail'] = "Username is already taken.";
+          header('location: register.php');
+        }
     } else {
         echo ("<script>console.log(\"ERROR: Registration page errors: '$errors'\");</script>");
     }
@@ -112,49 +116,4 @@ if (isset($_POST['logout'])) {
     header("location: login.php");
     exit();
 }
-
-//getting post request from login page
-if (isset($_POST['Login'])) {
-    echo ("<script>console.log(\"Login page request successful\");</script>");
-    $username = mysqli_real_escape_string($db, $_POST['username']);
-    $password = md5(mysqli_real_escape_string($db, $_POST['password']));
-
-    $superadminlogin = "SELECT username FROM superadmin WHERE username = '$username' and password = '$password'";
-    
-    $loginsql = "SELECT idParticipants FROM participants WHERE username = '$username' and password = '$password'";
-
-    $resultsa = mysqli_query($db, $superadminlogin);
-    $resulta = mysqli_query($db, $loginsql);
-    $resultuser = mysqli_query($db, $loginsql);
-    $adminflag = false;
-    if(mysqli_num_rows($resulta) == 1){ 
-        $row = mysqli_fetch_array($resulta, MYSQLI_ASSOC);
-        $iduser = $row['idParticipants'];
-        $adminlogin = "SELECT idParticipants FROM admins WHERE idParticipants = '$iduser'";
-        $result = mysqli_query($db, $adminlogin);
-        if(mysqli_num_rows($result) == 1 ){
-            $_SESSION['userid'] = $iduser;
-            $_SESSION['username'] = $username;
-            $_SESSION['role'] = "admin";
-            header("location: index.php");
-        }
-    }
-
-    if (mysqli_num_rows($resultsa) == 1) {
-        $_SESSION['username'] = $username;
-        $_SESSION['role'] = "super";
-        //might change to special index for superadmin and do a separate php check there to make sure its the super admin
-        header("location: index.php");
-    } else if (mysqli_num_rows($resultuser) == 1) {
-        $row = mysqli_fetch_array($resultuser, MYSQLI_ASSOC);
-        $iduser = $row['idParticipants'];
-        $_SESSION['userid'] = $iduser;
-        $_SESSION['username'] = $username;
-        $_SESSION['role'] = "participant";
-        header("location: index.php");
-    } else {
-        $x = mysqli_num_rows($result);
-        echo ("<script>console.log(\"ERROR: Login page query failed 'mysqli_num_rows($x)'\");</script>");
-        //header("location: login.php");
-    }
-}
+?>

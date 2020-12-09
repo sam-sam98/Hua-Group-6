@@ -2,7 +2,12 @@
 <?php include "errors.php" ?>
 <!DOCTYPE html>
 <html>
-
+  <?php
+  if (isset($_SESSION['regfail'])) {
+    echo "<h4>" . $_SESSION['regfail'] . "</h4>";
+    unset($_SESSION['regfail']);
+  }
+  ?>
     <form ACTION="backend.php" METHOD="post" NAME="RegisterForm" ONSUBMIT="return (testEmpty() && testChars() && testPass())">
         <label>Username:</label><br>
         <INPUT type="text" name="username"><br>
@@ -29,7 +34,7 @@
         return false;
       } else return true;
     }
-      
+
     function testChars() {
       username = document.RegisterForm.username.value
       re = /[^a-z0-9_\-]/i
