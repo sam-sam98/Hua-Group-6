@@ -4,7 +4,7 @@
 <html>
     <head></head>
     <body>
-        <form ACTION="create_backend.php" METHOD="post" NAME="CreateEventsPage" ONSUBMIT="return (testEmpty() && testChars() && testPass())">
+        <form ACTION="create_backend.php" METHOD="post" NAME="CreateEventsPage" ONSUBMIT="return testEmpty()">
             <label>Event Name:</label>
             <INPUT type="text" name="eventName"><br>
 
@@ -28,6 +28,17 @@
 
             <INPUT type="submit" name="register" value="Submit Event">
         </form>
+        <script type="text/javascript">
+        function testEmpty() {
+          form = document.CreateEventsPage
+          if ((form.eventName.value == "") || (form.eventURL.value == "") || (form.eventCity.value == "") || (form.eventState.value == "") || (form.eventStart.value == "") || (form.eventEnd.value == "")) {
+            alert("Please fill out all fields.");
+            return false;
+          } else {
+            return true;
+          }
+        }
+        </script>
         <?php
         if (isset($_SESSION['createEventSuccess']))
         {
@@ -35,9 +46,6 @@
             unset($_SESSION['createEventSuccess']);
         }
         ?>
-
-        <button type="button" value="Back" onclick="location.href='eventmanage.php'">Back</button> 
-
+        <button type="button" value="Back" onclick="location.href='eventmanage.php'">Back</button>
     </body>
 </html>
-
