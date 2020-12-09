@@ -45,7 +45,7 @@
                 $datedisplayend = substr($daterow['eventEnd'], -5, 2) . "-" . substr($daterow['eventEnd'], -2) . "-" . substr($daterow['eventEnd'], -10, 4);
 
                 echo "<li><h3>$eventname</h3><p>$eventDes</p><p>Location: " . $eventCity . ", " . $eventState . "<p>Date: " . $datedisplaystart . " to " . $datedisplayend . "</p><a href='$eventurl'>Event Url</a></li>";
-        }
+            }
         }
         else{
             echo "No results";
