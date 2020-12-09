@@ -4,26 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head></head>
-<<<<<<< HEAD
 <body>
   <?php
   if (isset($_SESSION['loginfail'])) {
     echo "<h4>" . $_SESSION['loginfail'] . "</h4>";
     unset($_SESSION['loginfail']);
   }
-=======
-<body>
-  <?php
-  if (isset($_SESSION['loginfail'])) {
-    echo "<h4>" . $_SESSION['loginfail'] . "</h4>";
-    unset($_SESSION['loginfail']);
-  }
-  if (isset($_SESSION['attemptcounter'])) {
-    if ($_SESSION['attemptcounter'] >= 5) {
-      echo "<h4>Too many failed attempts. Please try again later.</h4>";
-    }
-  }
->>>>>>> e8efbd95674d7ca96d789f8495196628e4ba9db0
   ?>
   <form action="login_backend.php" method="post" name="LoginForm" onsubmit="return testEmpty()">
     <label for="username">Username:</label><br>

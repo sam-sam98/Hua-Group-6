@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php include "nav.php"; 
     $db = mysqli_connect('localhost', 'root', '', 'mydb');
     if (session_status() == PHP_SESSION_NONE) {
@@ -10,11 +9,6 @@
     $role = $_SESSION['role'];
 
 ?>
-=======
-<?php include "nav.php" ?>
-
-
->>>>>>> e8efbd95674d7ca96d789f8495196628e4ba9db0
 <!DOCTYPE html>
 <html>
 
@@ -22,11 +16,7 @@
 
 <body>
     <h1>Search for Events</h1>
-<<<<<<< HEAD
     <form action="event-lookup.php" method="GET" name="datelookupform">
-=======
-    <form action="event-lookup.php" method="post" name="datelookupform">
->>>>>>> e8efbd95674d7ca96d789f8495196628e4ba9db0
         <label for="startdatesearch">Start Date</label>
         <input type="date" name ="startdatesearch"/>
         <label for="enddatesearch">End Date</label>
@@ -34,16 +24,11 @@
         <input type="submit" name="datesearch" value="Search Date"/>
     </form>
     <br>
-<<<<<<< HEAD
     <form action="event-lookup.php" method="GET" name="citylookupform">
-=======
-    <form action="event-lookup.php" method="post" name="citylookupform">
->>>>>>> e8efbd95674d7ca96d789f8495196628e4ba9db0
         <label for="locsearch">City</label>
         <input type="search" name="locsearch"/>
         <input type="submit" name="citysearch" value="Search City"/>
     </form>
-<<<<<<< HEAD
     <form action="eventlookup2.php" method="POST" name="participatelookupform">
     <?php 
     
@@ -136,11 +121,5 @@
 
 ?>
     </form>
-=======
-    <ul>
-        <?php include "event-lookupbackend.php" ?>
-    </ul>
-    
->>>>>>> e8efbd95674d7ca96d789f8495196628e4ba9db0
 </body>
 </html>
