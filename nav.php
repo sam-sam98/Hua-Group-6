@@ -15,9 +15,16 @@
     }
     else{
       print('<div class="topnav">
+<<<<<<< HEAD
         <a class="active" href="index.php">Index</a>
         <a href="eventmanage.php">Event Management</a>
         <a href="event-lookup.php">Event Lookup</a>
+=======
+        <a class="active" href="/index.php">Index</a>
+        <a href="/eventmanage.php">Event Management</a>
+        <a href="/event-lookup.php">Event Lookup</a>
+
+>>>>>>> e8efbd95674d7ca96d789f8495196628e4ba9db0
       </div>');
     }
   ?>

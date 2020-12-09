@@ -50,4 +50,8 @@
         else{
             echo "No results";
         }
+<<<<<<< HEAD
     }
+=======
+    }
+>>>>>>> e8efbd95674d7ca96d789f8495196628e4ba9db0
