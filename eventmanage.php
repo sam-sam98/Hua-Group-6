@@ -15,7 +15,7 @@
   </form>
   <?php
   if ($_SESSION['role'] == "admin") {
-    echo "<h3>Active Events</h3>";
+    echo "<h2>Active Events</h2>";
     echo "<form action=\"eventmanage_backend.php\" method=\"post\" name=\"EventsForm\">";
     $userid = $_SESSION['userid'];
     $sql = "SELECT * FROM events WHERE idOrganizer = '$userid' AND approved = 1";
@@ -25,12 +25,13 @@
         for($i = 0; $i < $n; $i++) {
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
           echo "<input type=\"checkbox\" id=\"event$i\" name=\"event$i\" value=\"delete\">  ";
-          echo "<span style=\"font-weight:bold;font-size:200%;\">" . $row['eventName'] . "</span><br>";
+          echo "<a href=" . $row['eventURL'] . "><span style=\"font-weight:bold;font-size:125%;\">" . $row['eventName'] . "</span></a><br>";
           echo "Location: " . $row['eventCity'] . ", " . $row['eventState'] . "<br>";
           echo "Dates: " . $row['eventStart'] . " to " . $row['eventEnd'] . "<br>";
           echo "Description: " . $row['eventDescription'] . "<br>";
+          echo "<br>";
         }
-        echo "<br><input type=\"submit\" value=\"Deactivate\">";
+        echo "<input type=\"submit\" value=\"Deactivate\">";
         echo "<input type=\"reset\" value=\"Clear\">";
       } else {
         echo "No currently active events.";
@@ -41,14 +42,14 @@
     echo "</form>";
     echo "<button onclick=\"toggleInactive()\">Toggle Inactive</button>";
     echo "<div id=\"Inactive\" style=\"display:none;\">";
-    echo "<h3>Inactive Events</h3>";
+    echo "<h2>Inactive Events</h2>";
     $sql = "SELECT * FROM events WHERE idOrganizer AND NOT approved = 1";
     if ($result = mysqli_query($db, $sql)) {
       $n = mysqli_num_rows($result);
       if ($n > 0) {
         for ($i = 0; $i < $n; $i++) {
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-          echo "<span style=\"font-weight:bold;font-size:200%;\">" . $row['eventName'] . "</span><br>";
+          echo "<a href=" . $row['eventURL'] . "><span style=\"font-weight:bold;font-size:125%;\">" . $row['eventName'] . "</span></a><br>";
           if ($row['approved'] == 0) {
             echo "Status: <span style=\"color:d1b61d;\">Pending Approval</span><br>";
           } else {
