@@ -36,7 +36,7 @@
     if(isset($_GET['datesearch'])){
         $startdatesearch = mysqli_real_escape_string($db, $_GET['startdatesearch']);
         $enddatesearch = mysqli_real_escape_string($db, $_GET['enddatesearch']);
-        $datesql = "SELECT * FROM EVENTS WHERE (approved = 1 and ('$startdatesearch' BETWEEN eventStart and eventEnd) OR ('$enddatesearch' BETWEEN eventStart and eventEnd) OR (eventStart BETWEEN '$startdatesearch' and '$enddatesearch') OR (eventEnd BETWEEN '$startdatesearch' and '$enddatesearch'))";
+        $datesql = "SELECT * FROM EVENTS WHERE (('$startdatesearch' BETWEEN eventStart and eventEnd) OR ('$enddatesearch' BETWEEN eventStart and eventEnd) OR (eventStart BETWEEN '$startdatesearch' and '$enddatesearch') OR (eventEnd BETWEEN '$startdatesearch' and '$enddatesearch'))";
         $result = mysqli_query($db, $datesql) or trigger_error(mysqli_error($db));
         $_SESSION['result'] = $datesql;
 
@@ -54,23 +54,29 @@
                 $eventState = $daterow['eventState'];
                 $datedisplaystart = substr($daterow['eventStart'], -5, 2)."-".substr($daterow['eventStart'], -2)."-".substr($daterow['eventStart'], -10, 4); 
                 $datedisplayend = substr($daterow['eventEnd'], -5, 2)."-".substr($daterow['eventEnd'], -2)."-".substr($daterow['eventEnd'], -10, 4); 
-
+                $approval = $daterow['approved'];
                                 
                 $eventid = $daterow['idEvents'];
                 $eventspartcipated = "SELECT * FROM eventsparticipated WHERE idEvents = '$eventid' and idParticipants = '$id'";
                 $partipatingresults = mysqli_query($db, $eventspartcipated) or trigger_error(mysqli_error($db));
 
-                if(mysqli_num_rows($partipatingresults) == 0){
+                if((mysqli_num_rows($partipatingresults) == 0) && $approval == 1){
                     echo "<h3>$eventname</h3>
                     <p>$eventDes</p>
                     <p>Date: ".$datedisplaystart." to ".$datedisplayend."</p>
                     <a href='$eventurl'>Event Url</a> <input type=\"submit\" value='Participate' name=\"reserve$eventid\">";  
                 }
-                else{
+                else if ($approval == 1){
                     echo "<h3>$eventname</h3>
                     <p>$eventDes</p>
                     <p>Date: ".$datedisplaystart." to ".$datedisplayend."</p>
                     <a href='$eventurl'>Event Url</a> <input type=\"submit\" value='Unreserve' name=\"unreserve$eventid\">";
+                }
+                else if ($approval == 3){
+                    echo "<h3>$eventname</h3>
+                    <p>$eventDes</p>
+                    <p>Date: ".$datedisplaystart." to ".$datedisplayend."</p>
+                    <a href='$eventurl'>Event Url</a><br><p> Event Not In Progress </p>";
                 }
             }
         } 

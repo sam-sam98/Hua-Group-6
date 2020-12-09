@@ -69,7 +69,20 @@ if (mysqli_query($db, $sqlparticipant)) {
     echo ("<script>console.log(\"ERROR: Participant was not added!\");</script>");
 }
 
+$today = date("Y-m-d");
 
+$eventDate = "SELECT * FROM events WHERE (approved = 1 and ('$today' NOT BETWEEN eventStart AND eventEnd))";
+$eventResults = mysqli_query($db, $eventDate) or trigger_error(mysqli_error($db));
+if(mysqli_num_rows($eventResults) > 0){
+    for($i = 0; $i < mysqli_num_rows($eventResults); $i++){
+        $eventRow = mysqli_fetch_array($eventResults, MYSQLI_ASSOC);
+        $eventID = $eventRow['idEvents'];
+        $unapprovesql = "UPDATE events SET approved = 3 WHERE idEvents = $eventID";
+        if(mysqli_query($db, $unapprovesql)){
+            echo ("<script>console.log(\"$eventID moved to unapproved\");</script>");
+        }
+    }
+}
 
 //getting post request from register page
 if (isset($_POST['register'])) {

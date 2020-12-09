@@ -43,7 +43,7 @@
     echo "<button onclick=\"toggleInactive()\">Toggle Inactive</button>";
     echo "<div id=\"Inactive\" style=\"display:none;\">";
     echo "<h2>Inactive Events</h2>";
-    $sql = "SELECT * FROM events WHERE idOrganizer AND NOT approved = 1";
+    $sql = "SELECT * FROM events WHERE idOrganizer = '$userid' AND NOT approved = 1";
     if ($result = mysqli_query($db, $sql)) {
       $n = mysqli_num_rows($result);
       if ($n > 0) {
@@ -52,8 +52,10 @@
           echo "<a href=" . $row['eventURL'] . "><span style=\"font-weight:bold;font-size:125%;\">" . $row['eventName'] . "</span></a><br>";
           if ($row['approved'] == 0) {
             echo "Status: <span style=\"color:d1b61d;\">Pending Approval</span><br>";
-          } else {
+          } else if($row['approved'] == 2) {
             echo "Status: <span style=\"color:#d11d1d;\">Deactivated</span><br>";
+          } else if($row['approved'] == 3) {
+            echo "Status: <span style=\"color:#ff1493;\">Not In Progress</span><br>";
           }
           echo "Location: " . $row['eventCity'] . ", " . $row['eventState'] . "<br>";
           echo "Dates: " . $row['eventStart'] . " to " . $row['eventEnd'] . "<br>";
