@@ -13,7 +13,7 @@ if ($resultpending = mysqli_query($db, $getpending)) {
     if ($verdict == "approve") {
       // Search for organizer on admin table
       $approve = "SELECT * FROM admins WHERE idParticipants = $eventadmin";
-      if (mysqli_query($db, $approve)) {
+      if ($result = mysqli_query($db, $approve)) {
         // Promote user to admin if they are not already on the admin table
         if (mysqli_num_rows($result) == 0) {
           $approve = "INSERT INTO admins (idParticipants) VALUES ('$eventadmin')";

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2020 at 02:47 AM
--- Server version: 10.4.16-MariaDB
--- PHP Version: 7.4.12
+-- Generation Time: Dec 08, 2020 at 11:48 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -61,28 +61,9 @@ CREATE TABLE `events` (
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`idEvents`, `idOrganizer`, `eventName`, `eventCity`, `eventDescription`, `eventStart`, `eventEnd`, `eventState`, `eventURL`, `approved`) VALUES
-(4, 82, 'Pompeii: The Immortal City', 'Orlando', 'Orlando Science Center exhibit of Pompeii', '2020-10-26', '2021-01-24', 'Florida', 'https://www.osc.org/pompeii/', 0),
-(7, 0, 'Seaworlds Christmas Celebration', 'Orlando', 'Seaworld Christmas Event', '2020-11-14', '2020-12-31', 'Florida', 'https://seaworld.com/orlando/events/christmas-celebration/', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `eventsparticipated`
---
-
-CREATE TABLE `eventsparticipated` (
-  `idEvents` int(11) NOT NULL,
-  `idParticipants` int(11) NOT NULL,
-  `idEventsParticipants` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `eventsparticipated`
---
-
-INSERT INTO `eventsparticipated` (`idEvents`, `idParticipants`, `idEventsParticipants`) VALUES
-(4, 211, 1);
+INSERT INTO `events` (`idEvents`, `eventName`, `eventCity`, `eventDescription`, `eventStart`, `eventEnd`, `eventState`, `eventURL`) VALUES
+(4, 'Pompeii: The Immortal City', 'Orlando', 'Orlando Science Center exhibit of Pompeii', '2020-10-26', '2021-01-24', 'Florida', 'https://www.osc.org/pompeii/'),
+(7, 'Seaworlds Christmas Celebration', 'Orlando', 'Seaworld Christmas Event', '2020-11-14', '2020-12-31', 'Florida', 'https://seaworld.com/orlando/events/christmas-celebration/');
 
 -- --------------------------------------------------------
 
@@ -103,9 +84,7 @@ CREATE TABLE `participants` (
 
 INSERT INTO `participants` (`idParticipants`, `username`, `password`, `eventsParticipated`) VALUES
 (82, 'testadmin', '9283a03246ef2dacdc21a9b137817ec1', NULL),
-(211, 'testusername', '473379a601ad81d17e7584754d90140c', NULL),
-(334, 'Logan', '5f4dcc3b5aa765d61d8327deb882cf99', NULL),
-(433, 'testinguserinput', '536b63309d1f8c6c7a360f4a9ad30a46', NULL);
+(211, 'testusername', '473379a601ad81d17e7584754d90140c', NULL);
 
 -- --------------------------------------------------------
 
@@ -145,12 +124,6 @@ ALTER TABLE `events`
   ADD UNIQUE KEY `eventURL` (`eventURL`);
 
 --
--- Indexes for table `eventsparticipated`
---
-ALTER TABLE `eventsparticipated`
-  ADD PRIMARY KEY (`idEventsParticipants`);
-
---
 -- Indexes for table `participants`
 --
 ALTER TABLE `participants`
@@ -174,19 +147,13 @@ ALTER TABLE `superadmin`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `idEvents` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
-
---
--- AUTO_INCREMENT for table `eventsparticipated`
---
-ALTER TABLE `eventsparticipated`
-  MODIFY `idEventsParticipants` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idEvents` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `participants`
 --
 ALTER TABLE `participants`
-  MODIFY `idParticipants` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=440;
+  MODIFY `idParticipants` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=320;
 
 --
 -- Constraints for dumped tables
