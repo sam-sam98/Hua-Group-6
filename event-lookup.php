@@ -7,6 +7,7 @@
 
     $user = $_SESSION['username'];
     $role = $_SESSION['role'];
+    $id = $_SESSION['userid'];
 
 ?>
 <!DOCTYPE html>
@@ -56,7 +57,7 @@
 
                                 
                 $eventid = $daterow['idEvents'];
-                $eventspartcipated = "SELECT * FROM eventsparticipated WHERE idEvents = '$eventid'";
+                $eventspartcipated = "SELECT * FROM eventsparticipated WHERE idEvents = '$eventid' and idParticipants = '$id'";
                 $partipatingresults = mysqli_query($db, $eventspartcipated) or trigger_error(mysqli_error($db));
 
                 if(mysqli_num_rows($partipatingresults) == 0){
@@ -95,7 +96,7 @@
                 $datedisplayend = substr($locrow['eventEnd'], -5, 2)."-".substr($locrow['eventEnd'], -2)."-".substr($locrow['eventEnd'], -10, 4);
                 $eventid = $locrow['idEvents'];
 
-                $eventspartcipated = "SELECT * FROM eventsparticipated WHERE idEvents = '$eventid'";
+                $eventspartcipated = "SELECT * FROM eventsparticipated WHERE idEvents = '$eventid' and idParticipants = '$id'";
                 $partipatingresults = mysqli_query($db, $eventspartcipated) or trigger_error(mysqli_error($db));
 
                 $buttonflag = 1;
